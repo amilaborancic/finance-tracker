@@ -1,6 +1,7 @@
 package finance.tracker.app.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="transaction_types")
@@ -11,8 +12,9 @@ public class TransactionType {
     Long id;
     String naziv;
 
-    @OneToOne(mappedBy = "type")
-    private Transaction transaction;
+    @OneToMany
+    @JoinColumn(name="type_id", referencedColumnName = "id")
+    private List<Transaction> transactions;
 
     public TransactionType() {
     }

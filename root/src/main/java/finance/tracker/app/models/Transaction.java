@@ -19,18 +19,14 @@ public class Transaction {
     private Long idAccount;
 
     //veza jedan na jedan izmedju transakcije i njenog tipa
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "type_id", referencedColumnName = "id")
-    TransactionType type;
+    @Column(name = "type_id")
+    Long type;
 
     @Column(length = 3000, name="item_description")
     private String itemDescription;
 
     @Column(name="transaction_interval")
     private Integer transactionInterval;
-
-    @Column(name="end_date")
-    private Date endDate;
 
     public Long getId() {
         return id;
@@ -60,11 +56,11 @@ public class Transaction {
         this.title = title;
     }
 
-    public TransactionType getType() {
+    public Long getType() {
         return type;
     }
 
-    public void setType(TransactionType type) {
+    public void setType(Long type) {
         this.type = type;
     }
 
@@ -84,24 +80,15 @@ public class Transaction {
         this.transactionInterval = transactionInterval;
     }
 
-    public Date getEndDate() {
-        return endDate;
-    }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Transaction() {
-    }
-    public Transaction(Date date, Double amount, String title, TransactionType type, String itemDescription, Integer transactionInterval, Date endDate, Long idAccount) {
+    public Transaction() { }
+    public Transaction(Date date, Double amount, String title, Long type, String itemDescription, Integer transactionInterval, Long idAccount) {
         this.date = date;
         this.amount = amount;
         this.title = title;
         this.type = type;
         this.itemDescription = itemDescription;
         this.transactionInterval = transactionInterval;
-        this.endDate = endDate;
         this.idAccount = idAccount;
     }
 }
