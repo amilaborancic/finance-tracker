@@ -9,6 +9,7 @@ import finance.tracker.app.services.AccountService;
 import finance.tracker.app.services.TransactionService;
 import finance.tracker.app.services.TransactionTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -49,5 +50,10 @@ public class TransactionController {
     @PostMapping("/sort/amount")
     public List<Transaction> sortTransactionsByAmount(@RequestBody TransactionSortDTO dto){
         return transactionService.getTransactionsSortedByAmount(dto);
+    }
+
+    @GetMapping("/filter/type")
+    public List<Transaction> filterTransactionsByType(@RequestParam Long typeId){
+        return transactionService.getTransactionsByType(typeId);
     }
 }

@@ -10,4 +10,5 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     List<Transaction> findByIdAccountOrderByAmountAsc(Long idAccount);
     List<Transaction> findByIdAccountOrderByAmountDesc(Long idAccount);
+    List<Transaction> findAllByType(Long type);
 }

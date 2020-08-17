@@ -20,5 +20,8 @@ public class TransactionService {
         if(dto.getOrderAsc()) return transactionRepository.findByIdAccountOrderByAmountAsc(dto.getAccountId());
         return transactionRepository.findByIdAccountOrderByAmountDesc(dto.getAccountId());
     }
+    public List<Transaction> getTransactionsByType(Long typeId){
+        return transactionRepository.findAllByType(typeId);
+    }
 
 }
