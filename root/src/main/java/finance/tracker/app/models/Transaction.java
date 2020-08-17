@@ -1,5 +1,7 @@
 package finance.tracker.app.models;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import java.util.Date;
 
