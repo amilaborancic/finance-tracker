@@ -1,6 +1,7 @@
 package finance.tracker.app.controllers;
 
 import finance.tracker.app.DTO.TransactionDTO;
+import finance.tracker.app.DTO.TransactionSortDTO;
 import finance.tracker.app.models.Account;
 import finance.tracker.app.models.Transaction;
 import finance.tracker.app.models.TransactionType;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -44,8 +46,8 @@ public class TransactionController {
         return transaction.getId();
     }
 
- /*   @GetMapping("/sort/amount")
-    public List<Transaction> sortTransactionsByAmount(){
-
-    }*/
+    @PostMapping("/sort/amount")
+    public List<Transaction> sortTransactionsByAmount(@RequestBody TransactionSortDTO dto){
+        return transactionService.getTransactionsSortedByAmount(dto);
+    }
 }
