@@ -31,13 +31,18 @@ public class TransactionController {
         Long typeId = newTransaction.getType();
         String typeName = transactionTypeService.findTypeById(typeId).getNaziv();
         //validacija
-        if((typeName.equals("REGULARINCOME") || typeName.equals("INDIVIDUALINCOME")) && newTransaction.getItemDescription() != null) throw new Exception("Transakcije tipa INCOME nemaju opis kupljenog proizvoda.");
-        if(!typeName.equals("REGULARINCOME") && !typeName.equals("REGULARPAYMENT") && newTransaction.getTransactionInterval() != null) throw new Exception("Transakcije koje nisu REGULAR tipa se ne ponavljaju periodicno.");
+        if((typeName.equals("REGULARINCOME") || typeName.equals("INDIVIDUALINCOME")) && newTransaction.getItemDescription() != null)
+            throw new Exception("Transakcije tipa INCOME nemaju opis kupljenog proizvoda.");
+        if(!typeName.equals("REGULARINCOME") && !typeName.equals("REGULARPAYMENT") && newTransaction.getTransactionInterval() != null)
+            throw new Exception("Transakcije koje nisu REGULAR tipa se ne ponavljaju periodicno.");
 
         //provjera da li ima dovoljno sredstava na racunu ukoliko se radi o rashodu
-        if((typeName.equals("REGULARPAYMENT") || typeName.equals("INDIVIDUALPAYMENT") || typeName.equals("PURCHASE")) && !accountService.isUnderBudget(newTransaction.getAmount(), newTransaction.getIdAccount())) throw new Exception("Nemate dovoljno sredstava za ovu transakciju!");
+        if((typeName.equals("REGULARPAYMENT") || typeName.equals("INDIVIDUALPAYMENT") || typeName.equals("PURCHASE")) &&
+                !accountService.isUnderBudget(newTransaction.getAmount(), newTransaction.getIdAccount()))
+            throw new Exception("Nemate dovoljno sredstava za ovu transakciju!");
 
-        Transaction transaction = new Transaction(new Date(), newTransaction.getAmount(), newTransaction.getTitle(), typeId, newTransaction.getItemDescription(), newTransaction.getTransactionInterval(), newTransaction.getIdAccount());
+        Transaction transaction = new Transaction(new Date(), newTransaction.getAmount(), newTransaction.getTitle(),
+                typeId, newTransaction.getItemDescription(), newTransaction.getTransactionInterval(), newTransaction.getIdAccount());
         transactionService.save(transaction);
 
         //update stanja na racunu
