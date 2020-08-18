@@ -24,4 +24,12 @@ public class TransactionService {
         return transactionRepository.findAllByType(typeId);
     }
 
+    public long countTransactions(){
+        return transactionRepository.count();
+    }
+
+    public List<Transaction> getTransactionsForAccount(Long accountId){
+        return transactionRepository.findAllByIdAccount(accountId);
+    }
+
 }

@@ -16,6 +16,7 @@ public class Transaction {
     private Double amount;
     private String title;
 
+
     //foreign key na account
     @Column(name="id_account")
     private Long idAccount;
@@ -80,6 +81,13 @@ public class Transaction {
 
     public void setTransactionInterval(Integer transactionInterval) {
         this.transactionInterval = transactionInterval;
+    }
+    public Long getIdAccount() {
+        return idAccount;
+    }
+
+    public void setIdAccount(Long idAccount) {
+        this.idAccount = idAccount;
     }
 
 

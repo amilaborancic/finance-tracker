@@ -75,6 +75,5 @@ class DemoCommandLineRunner implements CommandLineRunner {
 		transactionRepository.save(t4);
 		transactionRepository.save(t5);
 
-		System.out.println(accountRepository.findById(50L));
 	}
 }
