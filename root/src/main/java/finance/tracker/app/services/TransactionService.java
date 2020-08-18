@@ -16,6 +16,7 @@ public class TransactionService {
     public void save(Transaction transaction){
         transactionRepository.save(transaction);
     }
+
     public List<Transaction> getTransactionsSortedByAmount(TransactionSortDTO dto){
         if(dto.getOrderAsc()) return transactionRepository.findByIdAccountOrderByAmountAsc(dto.getAccountId());
         return transactionRepository.findByIdAccountOrderByAmountDesc(dto.getAccountId());
