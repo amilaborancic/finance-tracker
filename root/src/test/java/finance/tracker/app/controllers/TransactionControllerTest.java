@@ -58,7 +58,6 @@ class TransactionControllerTest {
         TransactionDTO t4 = new TransactionDTO((double) -1000000, "blabla", 1L, 3L, "smlsm", null);
         Assertions.assertThrows(Exception.class,
                 ()->mockMvc.perform(post("/transaction/new").contentType(MediaType.APPLICATION_JSON).content(asJsonString(t4))));
-
     }
 
 }

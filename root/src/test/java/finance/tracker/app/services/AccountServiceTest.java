@@ -34,9 +34,8 @@ class AccountServiceTest {
     @Test
     void isUnderBudget() {
         Account acc = accountService.findAccountById(1L);
-        //budzet ne smije biti negativan
-        assertTrue(-50 < acc.getBudget());
         //stvarni budzet racuna 1 iznosi 500
+        assertTrue(-50 < acc.getBudget());
         assertEquals(500, (double) acc.getBudget());
         assertTrue(4000 > acc.getBudget());
     }
